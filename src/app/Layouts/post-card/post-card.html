@@ -1,5 +1,8 @@
-@if(post){
-    <div class="card shadow-effect">
+@if(post ){
+    
+    
+    <div class="card shadow-effect" [routerLink]="['/post', post.id]" style="cursor: pointer;">
+        
     <img src={{post.postImgPath}}
     alt="post-image" class="card-img-top">
 

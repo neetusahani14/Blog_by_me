@@ -9,11 +9,11 @@ import { SinglePost } from './pages/single-post/single-post';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: Home },
-  { path: 'category', component: SingleCategory },
+  { path: 'category/:category/:id', component: SingleCategory },
   { path: 'about', component: AboutUs },
   { path: 'contact', component: ContactUs },
   { path: 'term-conditions', component: TermsAndConditions },
-  { path: 'post', component: SinglePost },
+  { path: 'post/:id', component: SinglePost },
   { path: '**', redirectTo: 'home' } // fallback
 
 ];

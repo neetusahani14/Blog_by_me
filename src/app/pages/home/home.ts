@@ -32,11 +32,21 @@ import { Posts } from '../../services/posts';
 export class Home {
 
   featuredPosts: any[] = [];
-  constructor(private postService: Posts) {
+  latestPosts: any[] = [];
+
+  constructor(private postService: Posts) {}
+
+  ngOnInit(): void {
     this.postService.loadFeatured().subscribe(posts => {
       this.featuredPosts = posts; // Store the featured posts in a class property
       console.log(posts); // verify data is loading
     });
+
+    this.postService.loadLatest().subscribe(posts => {
+     this.latestPosts = posts; 
+    });
+
+
   }
 
 }

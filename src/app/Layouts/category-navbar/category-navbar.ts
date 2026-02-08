@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CategoryList } from '../../services/category-list';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-category-navbar',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './category-navbar.html',
   styleUrl: './category-navbar.css',
 })
