@@ -11,18 +11,11 @@
             </div>
         </div>
         <div class="row">
+            @for(feature of featuredPosts; track feature.id; let i = $index){
             <div class="col-lg-3">
-                <app-post-card></app-post-card>
+                <app-post-card [post]="feature"></app-post-card>
             </div>
-            <div class="col-lg-3">
-                <app-post-card></app-post-card>
-            </div>
-            <div class="col-lg-3">
-                <app-post-card></app-post-card>
-            </div>
-            <div class="col-lg-3">
-                <app-post-card></app-post-card>
-            </div>
+            }
         </div>
     </div>
 </section>

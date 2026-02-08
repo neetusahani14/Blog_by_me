@@ -7,10 +7,13 @@ import { TermsAndConditions } from './pages/terms-and-conditions/terms-and-condi
 import { SinglePost } from './pages/single-post/single-post';
 
 export const routes: Routes = [
-    {path: '', component:Home},
-    {path:'category', component:SingleCategory},
-    {path:'about', component:AboutUs},
-    {path:'contact', component:ContactUs},
-    {path:'term-conditions', component:TermsAndConditions},
-    {path:'post',component:SinglePost},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: Home },
+  { path: 'category', component: SingleCategory },
+  { path: 'about', component: AboutUs },
+  { path: 'contact', component: ContactUs },
+  { path: 'term-conditions', component: TermsAndConditions },
+  { path: 'post', component: SinglePost },
+  { path: '**', redirectTo: 'home' } // fallback
+
 ];
