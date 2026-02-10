@@ -4,9 +4,11 @@
             <div class="card shadow-effect">
                 <img src={{postData?.postImgPath}} alt="" class="card-img-top img-fluid">
                 <div class="card-body">
-                    <small class="bg-light text-danger text-center">{{postData?.category?.categoryName}}</small>
-                    <small class="bg-light text-success text-center ml-2">Featured</small>
-                    <small class="bg-light text-info text-center ml-2">Views - {{postData?.views}}</small>
+                    <small class="bg-light text-danger text-center">{{postData?.category?.categoryName}}</small> &nbsp;
+                        @if(postData?.isFeatured){
+                    <small class="bg-light text-success text-center ml-3"> Featured </small> &nbsp;
+                            }
+                    <small class="bg-light text-info text-center ml-2">Views - {{postData?.views}}</small> &nbsp;
                     <small class="bg-light text-warning text-center">LAST UPDATED - {{postData?.createdAt.toMillis() | date}}</small>
                     <h1 class="mt-3 mb-3">{{postData?.title}}</h1>
                     <p [innerHTML]="postData.content"></p>

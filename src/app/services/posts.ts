@@ -1,6 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { collection, collectionData, Firestore, query, where, limit, orderBy, doc, docData } from '@angular/fire/firestore';
+import { collection, collectionData, Firestore, query, where, limit, orderBy, doc, docData, increment, updateDoc } from '@angular/fire/firestore';
 import { map, Observable } from 'rxjs';
+
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root',
@@ -8,26 +10,7 @@ import { map, Observable } from 'rxjs';
 export class Posts {
  private  firestore= inject(Firestore);
 
-  //   async saveData(data:any){
-    
-  //   try {
-  //     const docRef = await addDoc(collection(this.firestore, 'categories'), data);
-  //     console.log(docRef.id);
-  //     // this.toastr.success('Data Insert successfully...!')
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  //   addDoc(collection(this.firestore, 'categories'), data).then((docRef)=>{
-  //     console.log(docRef.id);   
-  //   })
-    
-  //   .catch(error=>{ console.log(error) });
-  // }
 
-  // loadData(): Observable<any[]> {
-  //   const colRef = collection(this.firestore, 'posts', (ref) => ref.orderBy('createdAt', 'desc')); // order by createdAt field
-  //   return collectionData(colRef, { idField: 'id' }); // AngularFire helper
-  // }
  
 loadFeatured(): Observable<any[]> {
   const colRef = collection(this.firestore, 'posts');
@@ -60,11 +43,16 @@ loadSimilarPosts(catId:string): Observable<any[]> {
   return collectionData(q, { idField: 'id' }) as Observable<any[]>;   
 }
 
-countViews(postId: string)
-{
+countViews(postId: string) {
   const docRef = doc(this.firestore, `posts/${postId}`);
+  updateDoc(docRef, { views: increment(1) }).then(() => {
+    console.log('View count incremented successfully');
+  }).catch((error) => {
+    console.error('Error incrementing view count: ', error);
+  });
   return docData(docRef, { idField: 'id' });
-  
 }
+
+
 
 }

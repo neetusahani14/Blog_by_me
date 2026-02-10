@@ -12,6 +12,6 @@ export class PostCard {
   @Input() post: any; // Accept a post object as input
 
   ngOnInit(): void {
-    console.log(this.post); // Log the post data to verify it's being received
+    // console.log(this.post); // Log the post data to verify it's being received
   }
 }

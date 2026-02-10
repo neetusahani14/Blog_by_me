@@ -22,6 +22,8 @@ export class SinglePost {
 
   ngOnInit(): void {  
     this.route.params.subscribe(val => {
+      this.postsService.countViews(val['id']);
+
      this.postsService.loadOnePost(val['id']).subscribe(post => {
       this.postData = post; 
           this.loadSimilarPosts(this.postData?.category?.categoryId);
