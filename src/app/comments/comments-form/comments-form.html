@@ -2,15 +2,34 @@
     <div class="card-body">
         <h3 class="mb-4">Leave a Comment</h3>
         <p> Your comment will be published after moderation.</p>
-        <form>
-            <div class="form-group">
+        <form #commentForm="ngForm" (ngSubmit)="submitComment(commentForm)">
+            <div class="form-group" >
                 <label for="name">Name</label>
-                <input type="text" class="form-control shadow-effect" placeholder="Enter Your Name">
-            </div>
+                <input type="text"
+                 class="form-control shadow-effect"
+                 placeholder="Enter Your Name" 
+                  name="name" 
+                  ngModel 
+                  #Name='ngModel'
+                 required
+                            [ngClass]="{'is-invalid': Name.touched && Name.invalid}">
+                            @if(Name.touched && Name.invalid) {
+                                <div class="alert alert-danger">
+                                Name cannot be empty.
+                            </div>
+                            }
+                        </div>
             <div class="form-group">
                 <label for="comment">Comment</label>
-                <textarea  cols="30" rows="10" class="form-control shadow-effect" placeholder="Write Your Comment Here"></textarea>
+                <textarea
+                  cols="30" 
+                  rows="10" 
+                  class="form-control shadow-effect" 
+                  placeholder="Write Your Comment Here" 
+                  name="comment" 
+                  ngModel 
+                  ></textarea>
             </div>
-            <button class="btn btn-info btn-theme mt-3">ADD COMMENT</button>
+            <button class="btn btn-info btn-theme mt-3" [disabled]="commentForm.invalid">ADD COMMENT</button>
         </form>
 </div>
